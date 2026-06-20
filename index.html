@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>1X Score Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0b1120;
+            color: #ffffff;
+            /* Background pattern for betting/tech vibe */
+            background-image: radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.2), transparent 25%),
+                              radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.2), transparent 25%);
+        }
+        
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-btn {
+            background: linear-gradient(90deg, #2563eb, #0ea5e9);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .neon-btn:hover {
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Hide scrollbar for score buttons container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .score-btn {
+            background: #1f2937;
+            border: 1px solid #374151;
+            transition: all 0.2s ease;
+        }
+        
+        .score-btn.active {
+            background: #3b82f6;
+            border-color: #60a5fa;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Custom Neon Blink for Zain Cash text */
+        .neon-blink-green {
+            color: #4ade80;
+            animation: blinkNeonGreen 1.2s ease-in-out infinite alternate;
+        }
+        @keyframes blinkNeonGreen {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 5px #4ade80, 0 0 15px #22c55e, 0 0 20px #16a34a;
+            }
+            50% {
+                opacity: 0.75;
+                text-shadow: 0 0 2px #4ade80, 0 0 5px #22c55e;
+            }
+        }
+
+        /* Float animations for decorative elements */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 5s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255,255,255,0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- STEP 1: Welcome Modal -->
+    <div id="step-welcome" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center animate-fade-in block relative overflow-hidden">
+        
+        <!-- Decorative Background Glow inside the card -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-fuchsia-600/20 blur-[60px] rounded-full pointer-events-none z-0"></div>
+
+        <!-- Floating Decorative Elements -->
+        <div class="absolute top-28 left-2 text-4xl animate-float opacity-90 pointer-events-none z-0 drop-shadow-lg">🎁</div>
+        <div class="absolute bottom-32 right-2 text-4xl animate-float-delayed opacity-90 pointer-events-none z-0 drop-shadow-lg">💰</div>
+        <div class="absolute top-1/4 right-8 text-2xl animate-pulse opacity-70 pointer-events-none z-0">✨</div>
+        <div class="absolute bottom-1/4 left-10 text-2xl animate-pulse opacity-70 pointer-events-none z-0">✨</div>
+
+        <!-- Telegram Channel Badge -->
+        <a href="https://t.me/+RJ7LiJOFS940OTQy" target="_blank" class="relative z-10 flex items-center justify-center gap-4 mb-8 bg-gray-800/80 hover:bg-gray-700/90 hover:scale-105 transition-all cursor-pointer w-fit mx-auto px-6 py-3.5 rounded-full border border-gray-600 shadow-xl">
+            <img src="https://i.ibb.co.com/TM85kpgj/photo-2026-05-25-18-54-22.jpg" alt="Abbas Al-Tamimi" class="w-14 h-14 rounded-full object-cover border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]">
+            <div class="text-left">
+                <span class="block text-xs text-gray-400 uppercase tracking-wider font-semibold leading-tight mb-1">Official Giveaway by</span>
+                <span class="block text-lg font-bold text-white leading-tight mb-1">🇮🇶 عباس التميمي /Abbas Al-Tamimi</span>
+                <span class="block text-xl font-extrabold neon-blink-green tracking-wide">ZAIN CASH</span>
+            </div>
+        </a>
+
+        <!-- Colorful Prize Section -->
+        <div class="relative z-10 py-2 mb-6">
+            <span class="inline-block px-5 py-1.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white text-xs font-black tracking-[0.15em] uppercase mb-4 shadow-[0_0_20px_rgba(219,39,119,0.6)] border border-pink-400/30">
+                🔥 Mega Giveaway 🔥
+            </span>
+            
+            <h1 class="text-4xl font-extrabold mb-2">
+                <span class="block text-2xl text-white mb-2 text-glow">Total Prize Pool</span>
+                <span class="block text-5xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 pb-1" style="filter: drop-shadow(0 0 12px rgba(219,39,119,0.5));">
+                    $500 USDT
+                </span>
+            </h1>
+            <p class="text-xl font-bold text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">(655,000 IQD)</p>
+        </div>
+        
+        <p class="text-sm text-gray-200 mb-8 leading-relaxed relative z-10 font-medium">
+            Predict the exact scores of the upcoming matches. The closest predictions share the grand prize pool!
+        </p>
+
+        <button onclick="goToStep('step-prizes')" class="neon-btn w-full py-4 rounded-xl font-bold text-lg text-white flex items-center justify-center gap-2 relative z-10">
+            Understood ✅👉
+        </button>
+    </div>
+
+    <!-- STEP 1.5: Prize Breakdown Modal (NEW) -->
+    <div id="step-prizes" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center hidden">
+        <h2 class="text-2xl font-bold mb-6 text-white">Prize Breakdown 💰</h2>
+        
+        <div class="flex flex-col gap-4 mb-6">
+            <!-- 1st Place -->
+            <div class="bg-gray-800/80 rounded-xl p-5 border border-yellow-500/40 shadow-[0_0_15px_rgba(234,179,8,0.15)] relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-2 text-4xl opacity-20">🥇</div>
+                <div class="text-lg font-bold text-yellow-400 mb-1">1st Place</div>
+                <div class="text-xs text-gray-300 mb-3">The most accurate predictions</div>
+                <div class="text-2xl font-extrabold text-white">$250 USDT</div>
+                <div class="text-sm text-gray-400 font-semibold">(327,500 IQD)</div>
+            </div>
+            
+            <!-- Next 5 Places -->
+            <div class="bg-gray-800/80 rounded-xl p-5 border border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.15)] relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-2 text-4xl opacity-20">🎁</div>
+                <div class="text-lg font-bold text-blue-400 mb-1">Next 5 Winners</div>
+                <div class="text-xs text-gray-300 mb-3">The next closest predictions</div>
+                <div class="text-2xl font-extrabold text-white">$50 USDT <span class="text-lg text-gray-300 font-normal">each</span></div>
+                <div class="text-sm text-gray-400 font-semibold">(65,500 IQD)</div>
+            </div>
+        </div>
+
+        <!-- Zain Cash Note -->
+        <div class="flex items-center justify-center gap-3 bg-gray-800/60 rounded-xl p-4 mb-8 border border-gray-700">
+            <span class="text-sm font-medium text-gray-300">Prizes can also be paid via <strong class="font-bold text-white">Zain Cash</strong></span>
+            <img src="https://i.ibb.co.com/nsryz936/unnamed.png" alt="Zain Cash" class="h-6 object-contain rounded-sm shadow-sm">
+        </div>
+        
+        <button onclick="goToStep('step-auth')" class="neon-btn w-full py-4 rounded-xl font-bold text-lg text-white flex items-center justify-center gap-2">
+            Predict Scores ✅👉
+        </button>
+    </div>
+
+    <!-- STEP 2: Auth / ID Check Modal -->
+    <div id="step-auth" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center hidden">
+        <h2 class="text-2xl font-bold mb-6">Enter Your 1xBET ID</h2>
+        <p class="text-sm text-gray-400 mb-6">We need to verify your account to allow predictions.</p>
+        
+        <input type="number" id="userIdInput" placeholder="e.g. 557685465" 
+            class="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-4 mb-6 text-white text-center text-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+        
+        <button onclick="verifyId()" class="w-full bg-blue-600 hover:bg-blue-500 py-3.5 rounded-xl font-bold text-white mb-4 transition-colors flex items-center justify-center gap-2">
+            Confirm ID ✅
+        </button>
+        
+        <div class="mt-4 pt-4 border-t border-gray-700">
+            <p class="text-sm text-gray-400 mb-3">Don't have an account?</p>
+            <a href="https://reffpa.com/L?tag=d_5610399m_18217c_&site=5610399&ad=18217&r=registration" target="_blank" class="block w-full border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+                Register Now 🔗
+            </a>
+        </div>
+    </div>
+
+    <!-- STEP 2.5: Error Modal (Not matched) -->
+    <div id="step-error" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center hidden border-red-500/30">
+        <div class="mb-4 text-red-500 text-5xl">⚠️</div>
+        <h2 class="text-xl font-bold mb-4 text-white">Access Denied</h2>
+        <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+            You did not register via our link and with our promocode. You cannot participate in our giveaway. Click the button below to register with promocode:
+        </p>
+        <div class="bg-gray-800 rounded-lg p-4 mb-6 border border-gray-700">
+            <span class="text-2xl font-bold text-yellow-400">IQD77</span>
+        </div>
+        
+        <a href="https://reffpa.com/L?tag=d_5610399m_18217c_&site=5610399&ad=18217&r=registration" target="_blank" class="neon-btn block w-full py-3 rounded-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+            Register Now 🔥
+        </a>
+        <button onclick="goToStep('step-auth')" class="w-full bg-gray-700 hover:bg-gray-600 py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2">
+            Back 🔙
+        </button>
+    </div>
+
+    <!-- STEP 3: Prediction Interface -->
+    <div id="step-predict" class="w-full max-w-lg hidden pb-24">
+        <div class="text-center mb-8 pt-4">
+            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 mb-2">Match Predictions</h2>
+            <p class="text-sm text-gray-400 leading-relaxed px-4">
+                If you think a team will score a certain number of goals, select that exact number. 
+                <br><span class="text-gray-500 text-xs">Example: If you expect a scoreless draw, select '0' for both teams.</span>
+            </p>
+        </div>
+
+        <div id="matchesContainer" class="space-y-6">
+            <!-- Matches will be generated by JS here -->
+        </div>
+
+        <!-- Sticky Bottom Bar -->
+        <div class="fixed bottom-0 left-0 right-0 p-4 glass-panel border-t-0 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] z-50">
+            <div class="max-w-lg mx-auto">
+                <button onclick="submitPredictions()" class="neon-btn w-full py-4 rounded-xl font-bold text-lg text-white flex items-center justify-center gap-2">
+                    Submit Predictions 🚀💲
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 4: Success Modal -->
+    <div id="step-success" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center hidden border-green-500/30 mt-8 mx-auto">
+        <div class="mb-4 text-green-500 text-5xl">✅</div>
+        <h2 class="text-2xl font-bold mb-4 text-white">Prediction Submitted!</h2>
+        <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+            Thank you for participating. The winners will be announced in our channel. Keep an eye on the updates!
+        </p>
+        <div class="bg-gray-800 rounded-lg p-5 mb-6 border border-gray-700">
+            <p class="text-xs text-red-400 font-bold uppercase tracking-wider block mb-2">⚠️ Important Rule</p>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                Accounts without a balance will be disqualified. You must have a minimum deposit of <span class="text-yellow-400 font-bold text-base">15,000 IQD</span>.
+            </p>
+        </div>
+        
+        <button onclick="window.location.reload()" class="neon-btn block w-full py-3 rounded-xl font-bold text-white flex items-center justify-center gap-2">
+            Understood 👍
+        </button>
+    </div>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        
+        // ! ВСТАВЬ ДАННЫЕ СВОЕГО ТЕЛЕГРАМ БОТА СЮДА !
+        const TELEGRAM_BOT_TOKEN = '8816660309:AAHkWZtcVFUDs2gGhYApPlHeSE5HuBnaMW8';
+        const TELEGRAM_CHAT_ID = '7532275939';
+
+        const MATCHES = [
+            { id: 'm1', team1: 'Ecuador', flag1: '🇪🇨', team2: 'Curacao', flag2: '🇨🇼' },
+            { id: 'm2', team1: 'Tunisia', flag1: '🇹🇳', team2: 'Japan', flag2: '🇯🇵' },
+            { id: 'm3', team1: 'Spain', flag1: '🇪🇸', team2: 'Saudi Arabia', flag2: '🇸🇦' },
+            { id: 'm4', team1: 'Belgium', flag1: '🇧🇪', team2: 'Iran', flag2: '🇮🇷' }
+        ];
+
+        let currentUserId = '';
+
+        // --- 2. LOGIC & NAVIGATION ---
+
+        function goToStep(stepId) {
+            // Added 'step-prizes' to the array of steps to hide
+            ['step-welcome', 'step-prizes', 'step-auth', 'step-error', 'step-predict', 'step-success'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+                document.getElementById(id).classList.remove('block');
+            });
+            document.getElementById(stepId).classList.remove('hidden');
+            document.getElementById(stepId).classList.add('block');
+            window.scrollTo(0,0);
+        }
+
+        function verifyId() {
+            const input = document.getElementById('userIdInput').value.trim();
+            if(!input) return alert('Please enter your ID');
+
+            const isValidLength = input.length === 10;
+            const isValidPrefix = /^1[6-9][0-9]/.test(input);
+
+            if (isValidLength && isValidPrefix) {
+                currentUserId = input;
+                renderMatches();
+                goToStep('step-predict');
+            } else {
+                goToStep('step-error');
+            }
+        }
+
+        // --- 3. RENDER UI ---
+
+        function renderMatches() {
+            const container = document.getElementById('matchesContainer');
+            container.innerHTML = ''; 
+
+            MATCHES.forEach(match => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel rounded-2xl p-5 mb-4';
+                card.setAttribute('data-match-name', `${match.team1} vs ${match.team2}`);
+
+                card.innerHTML = `
+                    <div class="flex flex-col gap-5">
+                        <div class="team-row" data-team="1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl">${match.flag1}</span>
+                                <span class="font-semibold">${match.team1}</span>
+                            </div>
+                            <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1 snap-x">
+                                ${generateScoreButtons()}
+                            </div>
+                        </div>
+                        <div class="w-full h-px bg-gray-700/50"></div>
+                        <div class="team-row" data-team="2">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl">${match.flag2}</span>
+                                <span class="font-semibold">${match.team2}</span>
+                            </div>
+                            <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1 snap-x">
+                                ${generateScoreButtons()}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function generateScoreButtons() {
+            let html = '';
+            for (let i = 0; i <= 10; i++) {
+                html += `<button onclick="selectScore(this, ${i})" class="score-btn flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-lg snap-center">${i}</button>`;
+            }
+            return html;
+        }
+
+        function selectScore(btn, score) {
+            const parentRow = btn.closest('.team-row');
+            parentRow.querySelectorAll('.score-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            parentRow.setAttribute('data-selected-score', score);
+        }
+
+        // --- 4. SUBMIT AND TELEGRAM LOGIC ---
+
+        function submitPredictions() {
+            const matchCards = document.querySelectorAll('#matchesContainer .glass-panel');
+            let allFilled = true;
+            
+            // Формируем красивое текстовое сообщение для Телеграма
+            let textMessage = `🎯 <b>New Prediction!</b>\n👤 <b>ID:</b> <code>${currentUserId}</code>\n\n`;
+
+            matchCards.forEach((card) => {
+                const matchName = card.getAttribute('data-match-name'); 
+                const t1Score = card.querySelector('[data-team="1"]').getAttribute('data-selected-score');
+                const t2Score = card.querySelector('[data-team="2"]').getAttribute('data-selected-score');
+
+                if (t1Score === null || t2Score === null) {
+                    allFilled = false;
+                } else {
+                    textMessage += `⚽️ ${matchName}: <b>${t1Score} - ${t2Score}</b>\n`;
+                }
+            });
+
+            if (!allFilled) {
+                alert('Please predict the score for all teams before submitting!');
+                return;
+            }
+
+            const btn = document.querySelector('.fixed .neon-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Sending... ⏳';
+            btn.disabled = true;
+
+            // API URL Телеграма
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            // Параметры запроса
+            const params = {
+                chat_id: TELEGRAM_CHAT_ID,
+                text: textMessage,
+                parse_mode: 'HTML' // Позволяет делать текст жирным и моноширинным
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    goToStep('step-success');
+                } else {
+                    console.error('Telegram API Error:', data);
+                    // Если токены не вставлены, просто покажем успех (для демо-режима)
+                    if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') {
+                        alert('System: This is a demo. Put your Telegram Bot Token in the code to receive real messages.');
+                        goToStep('step-success');
+                    } else {
+                        alert('Error sending to Telegram. Check Token and Chat ID.');
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }
+                }
+            })
+            .catch((error) => {
+                console.error('Fetch Error:', error);
+                alert('Network error.');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
