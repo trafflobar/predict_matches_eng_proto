@@ -214,9 +214,15 @@
 
     <!-- STEP 3: Prediction Interface -->
     <div id="step-predict" class="w-full max-w-lg hidden pb-24">
-        <div class="text-center mb-8 pt-4">
-            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 mb-2">Match Predictions</h2>
-            <p class="text-sm text-gray-400 leading-relaxed px-4">
+        <div class="text-center mb-6 pt-4">
+            <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 mb-3">Match Predictions</h2>
+            
+            <!-- Индикатор даты матчей -->
+            <div class="inline-block bg-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm font-bold mb-3 border border-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.2)]" id="matchDateDisplay">
+                <!-- Дата будет вставлена сюда из JS -->
+            </div>
+
+            <p class="text-sm text-gray-400 leading-relaxed px-4 mt-2">
                 If you think a team will score a certain number of goals, select that exact number. 
                 <br><span class="text-gray-500 text-xs">Example: If you expect a scoreless draw, select '0' for both teams.</span>
             </p>
@@ -236,32 +242,123 @@
         </div>
     </div>
 
-    <!-- STEP 4: Success Modal -->
-    <div id="step-success" class="w-full max-w-md glass-panel rounded-2xl p-8 text-center hidden border-green-500/30 mt-8 mx-auto">
-        <div class="mb-4 text-green-500 text-5xl">✅</div>
-        <h2 class="text-2xl font-bold mb-4 text-white">Prediction Submitted!</h2>
-        <p class="text-gray-300 mb-6 text-sm leading-relaxed">
-            Thank you for participating. The winners will be announced in our channel. Keep an eye on the updates!
-        </p>
-        <div class="bg-gray-800 rounded-lg p-5 mb-6 border border-gray-700">
-            <p class="text-xs text-red-400 font-bold uppercase tracking-wider block mb-2">⚠️ Important Rule</p>
-            <p class="text-sm text-gray-300 leading-relaxed">
-                Accounts without a balance will be disqualified. You must have a minimum deposit of <span class="text-yellow-400 font-bold text-base">15,000 IQD</span>.
+    <!-- STEP 4: Success / VIP Modal (HIGH CONVERSION SCREEN) -->
+    <div id="step-success" class="w-full max-w-lg glass-panel rounded-2xl p-6 md:p-8 text-center hidden border-yellow-500/30 my-8 mx-auto relative overflow-hidden">
+        
+        <div class="mb-2 text-green-400 text-6xl animate-bounce">🎯</div>
+        <h2 class="text-3xl font-extrabold mb-2 text-white">Prediction Saved!</h2>
+        <p class="text-gray-300 mb-6 text-sm md:text-base font-medium">But wait... you must complete <b>ONE final step</b> to secure your giveaway entry.</p>
+
+        <!-- Warning Block -->
+        <div class="bg-red-900/40 border border-red-500/50 rounded-xl p-4 mb-5 text-left shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+            <p class="text-sm md:text-base text-red-200 leading-relaxed font-medium">
+                🛑 <b>ATTENTION:</b> Players who are not in the VIP Club will <span class="text-red-400 font-bold underline">NOT participate</span> in the giveaway.
             </p>
         </div>
+
+        <!-- VIP Club Benefits -->
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-500/50 rounded-xl p-5 mb-6 text-left shadow-[0_0_20px_rgba(234,179,8,0.2)] relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 text-6xl opacity-10">👑</div>
+            <h3 class="text-lg font-bold text-yellow-400 mb-3 flex items-center gap-2">
+                How to join the VIP Club?
+            </h3>
+            <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                Simply make a deposit of at least <b class="text-yellow-400 text-base bg-yellow-400/10 px-2 py-0.5 rounded">15,000 IQD</b> to your 1xBET account. 
+                <br><span class="text-xs text-gray-400 italic">The money remains yours and you can withdraw it anytime!</span>
+            </p>
+            
+            <div class="space-y-3 text-sm text-gray-200">
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 text-lg">🎮</span>
+                    <p><b>Free Predictor Access:</b> Get algorithms for 'Crash', 'Mines', 'Penalty' & 10+ more games!</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 text-lg">⚽</span>
+                    <p><b>Premium Sports Analytics:</b> Daily accurate match predictions.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="mt-0.5 text-lg">💸</span>
+                    <p><b>Exclusive Perks:</b> Daily & weekly cash giveaways, vouchers, and more.</p>
+                </div>
+            </div>
+        </div>
         
-        <button onclick="window.location.reload()" class="neon-btn block w-full py-3 rounded-xl font-bold text-white flex items-center justify-center gap-2">
-            Understood 👍
-        </button>
+        <!-- Big CTA Button -->
+        <a href="https://reffpa.com/L?tag=d_5610399m_18217c_&site=5610399&ad=18217&r=registration" target="_blank" class="w-full py-4 rounded-xl font-extrabold text-xl text-white flex items-center justify-center gap-2 mb-8 bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.6)] hover:scale-105 transition-all transform animate-pulse cursor-pointer border-2 border-green-400">
+            Make a deposit +15,000 IQD 🔥✅
+        </a>
+
+        <!-- Reviews Section -->
+        <div class="text-left mt-8 pt-6 border-t border-gray-700/80">
+            <h3 class="text-center text-xl font-bold text-white mb-6">What our VIP Members Say 👇</h3>
+            
+            <div class="space-y-4">
+                <!-- Review 1 -->
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700 hover:border-blue-500/50 transition-colors">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">A</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Ali <span class="text-gray-400 text-xs font-normal">from Baghdad</span></div>
+                            <div class="text-[10px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full inline-block mt-0.5 border border-cyan-400/20">💎 Ultra VIP Member</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 italic leading-relaxed">"At first I doubted, but joining was the best decision! We just deposit to our own 1xBET account and can withdraw anytime. Don't hesitate, join the club! We share strategies and tips here 🔥 Highly recommend! 🔥🔥"</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700 hover:border-yellow-500/50 transition-colors">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">H</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Hussein <span class="text-gray-400 text-xs font-normal">from Basra</span></div>
+                            <div class="text-[10px] font-bold text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded-full inline-block mt-0.5 border border-yellow-400/20">🥇 Gold VIP Member</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 italic leading-relaxed">"Guys, Abbas asked me to write a review, so here it is. I recommend everyone to join the VIP club. Abbas shares different programs, sports bets, etc., with us every day. It's really interesting here!"</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700 hover:border-gray-300/50 transition-colors">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">M</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Mustafa <span class="text-gray-400 text-xs font-normal">from Erbil</span></div>
+                            <div class="text-[10px] font-bold text-gray-300 bg-gray-400/20 px-2 py-0.5 rounded-full inline-block mt-0.5 border border-gray-400/30">🥈 Silver VIP Member</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 italic leading-relaxed">"Last week I won 120,000 IQD here, hoping to win these giveaways too 🔥🤝"</p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700 hover:border-rose-500/50 transition-colors">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-red-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">Y</div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Youssef <span class="text-gray-400 text-xs font-normal">from Najaf</span></div>
+                            <div class="text-[10px] font-bold text-rose-400 bg-rose-400/10 px-2 py-0.5 rounded-full inline-block mt-0.5 border border-rose-400/20">👑 Ruby VIP Member</div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-300 italic leading-relaxed">"To be honest, the Mines predictor is mind-blowing! 🤯 I doubled my deposit in just 2 days. The VIP community is the best place to be! Thanks Abbas! 💸"</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // --- 1. CONFIGURATION ---
+        // ==========================================
+        // --- 1. CONFIGURATION (НАСТРОЙКИ САЙТА) ---
+        // ==========================================
         
-        // ! ВСТАВЬ ДАННЫЕ СВОЕГО ТЕЛЕГРАМ БОТА СЮДА !
+        // ! ТУТ МЕНЯТЬ ДАННЫЕ ТЕЛЕГРАМ БОТА !
         const TELEGRAM_BOT_TOKEN = '8816660309:AAHkWZtcVFUDs2gGhYApPlHeSE5HuBnaMW8';
         const TELEGRAM_CHAT_ID = '7532275939';
 
+        // ! ТУТ МЕНЯТЬ ДАТУ МАТЧЕЙ (Она покажется на экране прогнозов) !
+        const MATCH_DATE = 'Matches for: 21 June 2026';
+
+        // ! ТУТ МЕНЯТЬ КОМАНДЫ (Просто заменяй названия и эмодзи-флаги) !
+        // Можно добавлять новые строки или удалять старые, сайт сам подстроится.
         const MATCHES = [
             { id: 'm1', team1: 'Ecuador', flag1: '🇪🇨', team2: 'Curacao', flag2: '🇨🇼' },
             { id: 'm2', team1: 'Tunisia', flag1: '🇹🇳', team2: 'Japan', flag2: '🇯🇵' },
@@ -269,12 +366,13 @@
             { id: 'm4', team1: 'Belgium', flag1: '🇧🇪', team2: 'Iran', flag2: '🇮🇷' }
         ];
 
+        // ==========================================
+
         let currentUserId = '';
 
         // --- 2. LOGIC & NAVIGATION ---
 
         function goToStep(stepId) {
-            // Added 'step-prizes' to the array of steps to hide
             ['step-welcome', 'step-prizes', 'step-auth', 'step-error', 'step-predict', 'step-success'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
                 document.getElementById(id).classList.remove('block');
@@ -303,6 +401,9 @@
         // --- 3. RENDER UI ---
 
         function renderMatches() {
+            // Вставляем дату на экран
+            document.getElementById('matchDateDisplay').innerText = MATCH_DATE;
+
             const container = document.getElementById('matchesContainer');
             container.innerHTML = ''; 
 
@@ -314,9 +415,12 @@
                 card.innerHTML = `
                     <div class="flex flex-col gap-5">
                         <div class="team-row" data-team="1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xl">${match.flag1}</span>
-                                <span class="font-semibold">${match.team1}</span>
+                            <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xl">${match.flag1}</span>
+                                    <span class="font-bold text-lg">${match.team1}</span>
+                                </div>
+                                <span class="text-[11px] text-gray-400 italic">Select how many goals they will score 👇</span>
                             </div>
                             <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1 snap-x">
                                 ${generateScoreButtons()}
@@ -324,9 +428,12 @@
                         </div>
                         <div class="w-full h-px bg-gray-700/50"></div>
                         <div class="team-row" data-team="2">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xl">${match.flag2}</span>
-                                <span class="font-semibold">${match.team2}</span>
+                            <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mb-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xl">${match.flag2}</span>
+                                    <span class="font-bold text-lg">${match.team2}</span>
+                                </div>
+                                <span class="text-[11px] text-gray-400 italic">Select how many goals they will score 👇</span>
                             </div>
                             <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1 snap-x">
                                 ${generateScoreButtons()}
